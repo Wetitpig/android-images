@@ -1,3 +1,3 @@
 # Android Images
 
-Run Android with QEMU in a Docker.
+Run Android in a Docker.
