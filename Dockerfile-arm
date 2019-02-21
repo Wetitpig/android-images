@@ -5,8 +5,10 @@ RUN apk update && \
 	wget https://dl.google.com/android/repository/sys-img/google_apis/armeabi-v7a-25_r15.zip && \
 	7z x armeabi-v7a-25_r15.zip armeabi-v7a/system.img && \
 	7z x armeabi-v7a-25_r15.zip armeabi-v7a/ramdisk.img && \
-	cpio -i -F armeabi-v7a/system.img -p system && \
-	cpio -i -F armeabi-v7a/ramdisk.img -p system
+	7z x armeabi-v7a/system.img -oarmeabi-v7a && \
+	7z x armeabi-v7a/ramdisk.img -oarmeabi-v7a && \
+	cpio -i -F armeabi-v7a/system -p system && \
+	cpio -i -F armeabi-v7a/ramdisk -p system
 
 FROM scratch
 COPY --from=arm-ex system/ /
