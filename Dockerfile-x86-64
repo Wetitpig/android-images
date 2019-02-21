@@ -4,8 +4,8 @@ RUN apk update && \
 	mkdir -p system init && \
 	wget https://dl.google.com/android/repository/sys-img/google_apis/x86_64-25_r15.zip && \
 	7z x x86_64-25_r15.zip x86_64/system.img && \
-	7z x x86_64/system.img . -o system && \
-	7z x x86_64/ramdisk.img . -o init
+	7z x x86_64/system.img . -osystem && \
+	7z x x86_64/ramdisk.img . -oinit
 
 FROM scratch
 COPY --from=x86-64-ex system/ init/ /
