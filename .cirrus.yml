@@ -1,0 +1,3 @@
+docker_builder:
+    build_script:
+        - docker build -t android-base-image:latest .
