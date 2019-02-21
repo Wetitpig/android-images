@@ -5,9 +5,8 @@ RUN apk update && \
 	wget https://dl.google.com/android/repository/sys-img/google_apis/arm64-v8a-25_r15.zip && \
 	7z x arm64-v8a-25_r15.zip arm64-v8a/system.img && \
 	7z x arm64-v8a-25_r15.zip arm64-v8a/ramdisk.img && \
-	7z x arm64-v8a/system.img -oarm64-v8a && \
+	7z x arm64-v8a/system.img -osystem && \
 	7z x arm64-v8a/ramdisk.img -oarm64-v8a && \
-	cpio -i -F arm64-v8a/system -p system && \
 	cpio -i -F arm64-v8a/ramdisk -p system
 
 FROM scratch

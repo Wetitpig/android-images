@@ -5,9 +5,8 @@ RUN apk update && \
 	wget https://dl.google.com/android/repository/sys-img/google_apis/x86-25_r15.zip && \
 	7z x x86-25_r15.zip x86/system.img && \
 	7z x x86-25_r15.zip x86/ramdisk.img && \
-	7z x x86/system.img -ox86 && \
+	7z x x86/system.img -osystem && \
 	7z x x86/ramdisk.img -ox86 && \
-	cpio -i -F x86/system -p system && \
 	cpio -i -F x86/ramdisk -p system
 
 FROM scratch
