@@ -1,12 +1,13 @@
 FROM alpine:edge AS x86-64-ex
 RUN apk update && \
 	apk add p7zip wget qemu && \
-	mkdir -p system init && \
+	mkdir -p system && \
 	wget https://dl.google.com/android/repository/sys-img/google_apis/x86_64-25_r15.zip && \
 	7z x x86_64-25_r15.zip x86_64/system.img && \
-	7z x x86_64/system.img . -osystem && \
-	7z x x86_64/ramdisk.img . -oinit
+	7z x x86_64-25_r15.zip x86_64/ramdisk.img && \
+	cpio -i -F x86_64/system.img -p system && \
+	cpio -i -F x86_64/ramdisk.img -p system
 
 FROM scratch
-COPY --from=x86-64-ex system/ init/ /
+COPY --from=x86-64-ex system/ /
 ENTRYPOINT ["/init"]

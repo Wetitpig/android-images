@@ -1,12 +1,13 @@
 FROM alpine:edge AS aarch64-ex
 RUN apk update && \
 	apk add p7zip wget qemu && \
-	mkdir -p system init && \
+	mkdir -p system && \
 	wget https://dl.google.com/android/repository/sys-img/google_apis/arm64-v8a-25_r15.zip && \
 	7z x arm64-v8a-25_r15.zip arm64-v8a/system.img && \
-	7z x arm64-v8a/system.img . -osystem && \
-	7z x arm64-v8a/ramdisk.img . -oinit
+	7z x arm64-v8a-25_r15.zip arm64-v8a/ramdisk.img && \
+	cpio -i -F arm64-v8a/system.img -p system && \
+	cpio -i -F arm64-v8a/ramdisk.img -p system
 
 FROM scratch
-COPY --from=aarch64-ex system/ init/ /
+COPY --from=aarch64-ex system/ /
 ENTRYPOINT ["/init"]
