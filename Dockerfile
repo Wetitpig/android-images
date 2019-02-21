@@ -11,7 +11,7 @@ RUN apk update && \
 	7z x armeabi-v7a-25_r15.zip armeabi-v7a/system.img && \
 	7z x arm64-v8a-25_r15.zip arm64-v8a/system.img && \
 	rm *.zip && \
-	7z x x86/system.img && \
-	7z x x86_64/system.img && \
-	7z x armeabi-v7a/system.img && \
-	7z x arm64-v8a/system.img
+	7z x x86/system.img . && \
+	7z x x86_64/system.img . && \
+	7z x armeabi-v7a/system.img . && \
+	7z x arm64-v8a/system.img .
