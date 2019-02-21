@@ -1,3 +1,12 @@
-docker_builder:
+aarch64_docker_builder:
     build_script:
-        - docker build -t android-base-image:latest .
+        - docker build -t android-base-image:aarch64 -f Dockerfile-aarch64 .
+arm_docker_builder:
+    build_script:
+        - docker build -t android-base-image:arm -f Dockerfile-arm .
+i686_docker_builder:
+    build_script:
+        - docker build -t android-base-image:i686 -f Dockerfile-i686 .
+x86-64_docker_builder:
+    build_script:
+        - docker build -t android-base-image:x86-64 -f Dockerfile-x86-64 .
