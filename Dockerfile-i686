@@ -9,3 +9,4 @@ RUN apk update && \
 
 FROM scratch
 COPY --from=i686-ex system/ init/ /
+ENTRYPOINT ["/init"]

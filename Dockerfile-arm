@@ -9,3 +9,4 @@ RUN apk update && \
 
 FROM scratch
 COPY --from=arm-ex system/ init/ /
+ENTRYPOINT ["/init"]
