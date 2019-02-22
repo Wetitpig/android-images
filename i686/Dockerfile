@@ -11,7 +11,7 @@ RUN apk update && \
 	cpio -i -F ramdisk && \
 	rm ramdisk vendor && \
 	cd .. && \
-	7z x x86/system.img -osystem x'!etc' && \
+	7z x x86/system.img -osystem -x'!etc' && \
 	7z x x86/system.img etc -osystem/system && \
 	ln -sf system/vendor system/system/vendor
 

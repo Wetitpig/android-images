@@ -1,6 +1,6 @@
 aarch64_docker_builder:
     build_script:
-        - docker build -t wetitpig/android-base-image:aarch64 -f Dockerfile-aarch64 .
+        - docker build -t wetitpig/android-base-image:aarch64 aarch64
         - docker image ls
     push_script:
         - docker login --username $DOCKER_USER --password $DOCKER_PASS
@@ -11,7 +11,7 @@ aarch64_docker_builder:
 
 arm_docker_builder:
     build_script:
-        - docker build -t wetitpig/android-base-image:arm -f Dockerfile-arm .
+        - docker build -t wetitpig/android-base-image:arm arm
         - docker image ls
     push_script:
         - docker login --username $DOCKER_USER --password $DOCKER_PASS
@@ -22,7 +22,7 @@ arm_docker_builder:
 
 i686_docker_builder:
     build_script:
-        - docker build -t wetitpig/android-base-image:i686 -f Dockerfile-i686 .
+        - docker build -t wetitpig/android-base-image:i686 i686
         - docker image ls
     push_script:
         - docker login --username $DOCKER_USER --password $DOCKER_PASS
@@ -33,7 +33,7 @@ i686_docker_builder:
 
 x86-64_docker_builder:
     build_script:
-        - docker build -t wetitpig/android-base-image:x86-64 -f Dockerfile-x86-64 .
+        - docker build -t wetitpig/android-base-image:x86-64 x86-64
         - docker image ls
     push_script:
         - docker login --username $DOCKER_USER --password $DOCKER_PASS
