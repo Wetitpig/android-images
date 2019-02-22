@@ -1,12 +1,16 @@
 FROM alpine:edge AS i686-ex
 RUN apk update && \
 	apk add p7zip wget qemu && \
-	mkdir -p system && \
+	mkdir -p system/data/etc && \
 	wget https://dl.google.com/android/repository/sys-img/google_apis/x86-25_r15.zip && \
 	7z x x86-25_r15.zip x86/system.img && \
 	7z x x86-25_r15.zip x86/ramdisk.img && \
+	7z x x86-25_r15.zip x86/userdata.img && \
+	7z x x86-25_r15.zip x86/encryptionkey.img && \
 	7z x x86/system.img -osystem && \
 	7z x x86/ramdisk.img -osystem && \
+	7z x x86/userdata.img -osystem && \
+	mv x86/encryptionkey.img system/data/etc/encryptionkey.img && \
 	cd system && \
 	cpio -i -F ramdisk && \
 	rm ramdisk
