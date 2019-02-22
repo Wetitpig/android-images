@@ -1,4 +1,4 @@
-FROM alpine:edge AS x86-64-ex
+FROM alpine:edge AS x86_64-64-ex
 RUN apk update && \
 	apk add p7zip wget qemu && \
 	mkdir -p system/data/etc && \
@@ -6,13 +6,14 @@ RUN apk update && \
 	7z x x86_64-25_r15.zip x86_64/system.img && \
 	7z x x86_64-25_r15.zip x86_64/ramdisk.img && \
 	7z x x86_64-25_r15.zip x86_64/encryptionkey.img && \
-	7z x x86_64/system.img -osystem && \
 	7z x x86_64/ramdisk.img -osystem && \
 	mv x86_64/encryptionkey.img system/data/etc/encryptionkey.img && \
 	cd system && \
 	cpio -i -F ramdisk && \
-	rm ramdisk
+	rm ramdisk && \
+	cd .. && \
+	7z x x86_64/system.img -osystem
 
 FROM scratch
-COPY --from=x86-64-ex system/ /
+COPY --from=x86_64-64-ex system/ /
 ENTRYPOINT ["/init"]
