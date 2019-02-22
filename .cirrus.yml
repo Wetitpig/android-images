@@ -1,12 +1,43 @@
 aarch64_docker_builder:
     build_script:
-        - docker build -t android-base-image:aarch64 -f Dockerfile-aarch64 .
+        - docker build -t wetitpig/android-base-image:aarch64 -f Dockerfile-aarch64 .
+        - docker image ls
+    push_script:
+        - docker login --username $DOCKER_USER --password $DOCKER_PASS
+        - docker push wetitpig/android-base-image:aarch64
+    env:
+        DOCKER_USER: ENCRYPTED[0dfcea176fd0da1b7b99c7f5d4b53e671ae21546e5a11b942e3528ac36901b513c8d18d206eb67a84d6f9e2896d8fffe]
+        DOCKER_PASS: ENCRYPTED[f96a66390b03352596f9284a8cdbc3887d6ba82f4686e7353cfaeaeb3e0312c8cd40f2bdc9a5074fe21702c6ae088606]
+
 arm_docker_builder:
     build_script:
-        - docker build -t android-base-image:arm -f Dockerfile-arm .
+        - docker build -t wetitpig/android-base-image:arm -f Dockerfile-arm .
+        - docker image ls
+    push_script:
+        - docker login --username $DOCKER_USER --password $DOCKER_PASS
+        - docker push wetitpig/android-base-image:arm
+    env:
+        DOCKER_USER: ENCRYPTED[0dfcea176fd0da1b7b99c7f5d4b53e671ae21546e5a11b942e3528ac36901b513c8d18d206eb67a84d6f9e2896d8fffe]
+        DOCKER_PASS: ENCRYPTED[f96a66390b03352596f9284a8cdbc3887d6ba82f4686e7353cfaeaeb3e0312c8cd40f2bdc9a5074fe21702c6ae088606]
+
 i686_docker_builder:
     build_script:
-        - docker build -t android-base-image:i686 -f Dockerfile-i686 .
+        - docker build -t wetitpig/android-base-image:i686 -f Dockerfile-i686 .
+        - docker image ls
+    push_script:
+        - docker login --username $DOCKER_USER --password $DOCKER_PASS
+        - docker push wetitpig/android-base-image:i686
+    env:
+        DOCKER_USER: ENCRYPTED[0dfcea176fd0da1b7b99c7f5d4b53e671ae21546e5a11b942e3528ac36901b513c8d18d206eb67a84d6f9e2896d8fffe]
+        DOCKER_PASS: ENCRYPTED[f96a66390b03352596f9284a8cdbc3887d6ba82f4686e7353cfaeaeb3e0312c8cd40f2bdc9a5074fe21702c6ae088606]
+
 x86-64_docker_builder:
     build_script:
-        - docker build -t android-base-image:x86-64 -f Dockerfile-x86-64 .
+        - docker build -t wetitpig/android-base-image:x86-64 -f Dockerfile-x86-64 .
+        - docker image ls
+    push_script:
+        - docker login --username $DOCKER_USER --password $DOCKER_PASS
+        - docker push wetitpig/android-base-image:x86-64
+    env:
+        DOCKER_USER: ENCRYPTED[0dfcea176fd0da1b7b99c7f5d4b53e671ae21546e5a11b942e3528ac36901b513c8d18d206eb67a84d6f9e2896d8fffe]
+        DOCKER_PASS: ENCRYPTED[f96a66390b03352596f9284a8cdbc3887d6ba82f4686e7353cfaeaeb3e0312c8cd40f2bdc9a5074fe21702c6ae088606]
