@@ -5,11 +5,9 @@ RUN apk update && \
 	wget https://dl.google.com/android/repository/sys-img/google_apis/armeabi-v7a-25_r15.zip && \
 	7z x armeabi-v7a-25_r15.zip armeabi-v7a/system.img && \
 	7z x armeabi-v7a-25_r15.zip armeabi-v7a/ramdisk.img && \
-	7z x armeabi-v7a-25_r15.zip armeabi-v7a/userdata.img && \
 	7z x armeabi-v7a-25_r15.zip armeabi-v7a/encryptionkey.img && \
 	7z x armeabi-v7a/system.img -osystem && \
 	7z x armeabi-v7a/ramdisk.img -osystem && \
-	7z x armeabi-v7a/userdata.img -osystem && \
 	mv armeabi-v7a/encryptionkey.img system/data/etc/encryptionkey.img && \
 	cd system && \
 	cpio -i -F ramdisk && \
