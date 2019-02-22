@@ -1,18 +1,20 @@
 FROM alpine:edge AS x86_64-64-ex
 RUN apk update && \
 	apk add p7zip wget qemu && \
-	mkdir -p system/data/etc && \
+	mkdir -p system && \
 	wget https://dl.google.com/android/repository/sys-img/google_apis/x86_64-25_r15.zip && \
 	7z x x86_64-25_r15.zip x86_64/system.img && \
 	7z x x86_64-25_r15.zip x86_64/ramdisk.img && \
 	7z x x86_64-25_r15.zip x86_64/encryptionkey.img && \
 	7z x x86_64/ramdisk.img -osystem && \
-	mv x86_64/encryptionkey.img system/data/etc/encryptionkey.img && \
 	cd system && \
 	cpio -i -F ramdisk && \
 	rm ramdisk && \
 	cd .. && \
-	7z x x86_64/system.img -osystem
+	mv x86_64/encryptionkey.img system/data/etc/encryptionkey.img && \
+	7z x x86_64/system.img -osystem x'!etc' && \
+	7z x x86_64/system.img etc -osystem/system && \
+	ln -sf system/vendor system/system/vendor
 
 FROM scratch
 COPY --from=x86_64-64-ex system/ /

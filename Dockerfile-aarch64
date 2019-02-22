@@ -8,9 +8,11 @@ RUN apk update && \
 	7z x arm64-v8a/ramdisk.img -osystem && \
 	cd system && \
 	cpio -i -F ramdisk && \
-	rm ramdisk && \
+	rm ramdisk vendor && \
 	cd .. && \
-	7z x arm64-v8a/system.img -osystem
+	7z x arm64-v8a/system.img -osystem -x'!etc' && \
+	7z x arm64-v8a/system.img etc -osystem/system && \
+	ln -sf system/vendor system/system/vendor
 
 FROM scratch
 COPY --from=aarch64-ex system/ /
