@@ -6,8 +6,10 @@ RUN apk update && \
 	7z x armeabi-v7a-25_r15.zip armeabi-v7a/system.img && \
 	7z x armeabi-v7a-25_r15.zip armeabi-v7a/ramdisk.img && \
 	7z x armeabi-v7a/system.img -osystem && \
-	7z x armeabi-v7a/ramdisk.img -oarmeabi-v7a && \
-	cpio -i -F armeabi-v7a/ramdisk -p system
+	7z x armeabi-v7a/ramdisk.img -osystem && \
+	cd system && \
+	cpio -i -F ramdisk && \
+	rm ramdisk
 
 FROM scratch
 COPY --from=arm-ex system/ /
