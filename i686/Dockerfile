@@ -3,9 +3,7 @@ RUN apk update && \
 	apk add p7zip wget qemu && \
 	mkdir -p system && \
 	wget https://dl.google.com/android/repository/sys-img/google_apis/x86-25_r15.zip && \
-	7z x x86-25_r15.zip x86/system.img && \
-	7z x x86-25_r15.zip x86/ramdisk.img && \
-	7z x x86-25_r15.zip x86/encryptionkey.img && \
+	7z x x86-25_r15.zip && \
 	7z x x86/ramdisk.img -osystem && \
 	cd system && \
 	cpio -i -F ramdisk && \
@@ -13,7 +11,9 @@ RUN apk update && \
 	cd .. && \
 	7z x x86/system.img -osystem -x'!etc' && \
 	7z x x86/system.img etc -osystem/system && \
-	ln -sf system/vendor system/system/vendor
+	ln -sf system/vendor system/system/vendor && \
+	7z x x86/userdata.img -osystem/data && \
+	cp -r x86/data system/data
 
 FROM scratch
 COPY --from=i686-ex system/ /
