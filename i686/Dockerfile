@@ -13,7 +13,8 @@ RUN apk update && \
 	7z x x86/system.img etc -osystem/system && \
 	ln -sf system/vendor system/system/vendor && \
 	7z x x86/userdata.img -osystem/data && \
-	cp -r x86/data system/data
+	cp -r x86/data system/data && \
+	chmod -R 777 system
 
 FROM scratch
 COPY --from=i686-ex system/ /

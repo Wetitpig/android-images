@@ -13,7 +13,8 @@ RUN apk update && \
 	7z x armeabi-v7a/system.img etc -osystem/system && \
 	ln -sf system/vendor system/system/vendor && \
 	7z x armeabi-v7a/userdata.img -osystem/data && \
-	cp -r armeabi-v7a/data system/data
+	cp -r armeabi-v7a/data system/data && \
+	chmod -R 777 system
 
 FROM scratch
 COPY --from=arm-ex system/ /
