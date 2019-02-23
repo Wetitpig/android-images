@@ -12,7 +12,7 @@ RUN apk update && \
 	7z x armeabi-v7a/system.img -osystem -x'!etc' && \
 	7z x armeabi-v7a/system.img etc -osystem/system && \
 	ln -sf system/vendor system/system/vendor && \
-	ln -sf system/system/bin system/bin && \
+	ln -sf system/bin system/system/bin && \
 	7z x armeabi-v7a/userdata.img -osystem/data && \
 	cp -r armeabi-v7a/data system/data && \
 	chmod -R 777 system

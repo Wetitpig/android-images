@@ -12,7 +12,7 @@ RUN apk update && \
 	7z x arm64-v8a/system.img -osystem -x'!etc' && \
 	7z x arm64-v8a/system.img etc -osystem/system && \
 	ln -sf system/vendor system/system/vendor && \
-	ln -sf system/system/bin system/bin && \
+	ln -sf system/bin system/system/bin && \
 	7z x arm64-v8a/userdata.img -osystem/data && \
 	cp -r arm64-v8a/data system/data && \
 	chmod -R 777 system
