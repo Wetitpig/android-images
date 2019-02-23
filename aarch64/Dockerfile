@@ -2,7 +2,7 @@ FROM alpine:edge AS aarch64-ex
 RUN apk update && \
 	apk add p7zip aria2 qemu && \
 	mkdir -p system && \
-	aria2c -x 8 -k 2M https://dl.google.com/android/repository/sys-img/google_apis/arm64-v8a-25_r15.zip && \
+	aria2c -x 8 -k 2M http://dl.google.com/android/repository/sys-img/google_apis/arm64-v8a-25_r15.zip && \
 	7z x arm64-v8a-25_r15.zip && \
 	7z x arm64-v8a/ramdisk.img -osystem && \
 	cd system && \

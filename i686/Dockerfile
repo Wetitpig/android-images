@@ -2,7 +2,7 @@ FROM alpine:edge AS i686-ex
 RUN apk update && \
 	apk add p7zip aria2 qemu && \
 	mkdir -p system && \
-	aria2c -x 8 -k 2M https://dl.google.com/android/repository/sys-img/google_apis/x86-25_r15.zip && \
+	aria2c -x 8 -k 2M http://dl.google.com/android/repository/sys-img/google_apis/x86-25_r15.zip && \
 	7z x x86-25_r15.zip && \
 	7z x x86/ramdisk.img -osystem && \
 	cd system && \
